@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17171d">
+  <title>Sign in · Obsidian</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #17171d;
+      color: #f3f0f8;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      grid-template-columns: minmax(280px, 1fr) minmax(360px, 1fr);
+      background:
+        radial-gradient(ellipse at 18% 48%, rgba(126, 87, 194, .18), transparent 40%),
+        #17171d;
+    }
+
+    .welcome {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: clamp(2rem, 6vw, 5rem);
+      border-right: 1px solid #302d38;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: .75rem;
+      font-size: 1.15rem;
+      font-weight: 650;
+      letter-spacing: .01em;
+    }
+
+    .brand-mark {
+      width: 2rem;
+      height: 2rem;
+      display: grid;
+      place-items: center;
+      border-radius: .65rem;
+      background: linear-gradient(145deg, #a98ae8, #7045bb);
+      color: white;
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+
+    .welcome-copy { max-width: 470px; margin: 5rem 0; }
+    .eyebrow { color: #b6a1dd; font-size: .8rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+    h1 { margin: 1rem 0; font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1.08; letter-spacing: -.045em; }
+    .welcome-copy p { color: #aaa6b4; font-size: 1.05rem; line-height: 1.7; }
+    .footer-note { color: #777380; font-size: .85rem; }
+
+    .login-area {
+      display: grid;
+      place-items: center;
+      padding: 2rem;
+    }
+
+    .login-card { width: min(100%, 410px); }
+    .login-card h2 { margin: 0 0 .5rem; font-size: 1.8rem; letter-spacing: -.03em; }
+    .subheading { margin: 0 0 2rem; color: #aaa6b4; line-height: 1.5; }
+
+    .field { margin: 1.25rem 0; }
+    label { display: block; margin-bottom: .55rem; color: #e6e2eb; font-size: .9rem; font-weight: 600; }
+    input {
+      width: 100%;
+      min-height: 3rem;
+      padding: .8rem .9rem;
+      border: 1px solid #3b3744;
+      border-radius: .55rem;
+      outline: none;
+      background: #201f27;
+      color: #f3f0f8;
+      font: inherit;
+    }
+    input::placeholder { color: #777380; }
+    input:focus { border-color: #a98ae8; box-shadow: 0 0 0 3px rgba(169, 138, 232, .17); }
+
+    .form-row { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin: .25rem 0 1.5rem; font-size: .85rem; }
+    .remember { display: inline-flex; align-items: center; gap: .5rem; color: #aaa6b4; }
+    .remember input { width: 1rem; min-height: 1rem; margin: 0; accent-color: #9872d5; }
+    a { color: #c2a8f3; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    button {
+      width: 100%;
+      min-height: 3rem;
+      border: 0;
+      border-radius: .55rem;
+      background: #8b65c8;
+      color: white;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    button:hover { background: #9b77d5; }
+    button:focus-visible, a:focus-visible { outline: 3px solid #c2a8f3; outline-offset: 3px; }
+
+    .divider { display: flex; align-items: center; gap: 1rem; margin: 1.5rem 0; color: #777380; font-size: .8rem; }
+    .divider::before, .divider::after { content: ""; height: 1px; flex: 1; background: #35313d; }
+    .signup { color: #aaa6b4; text-align: center; font-size: .9rem; }
+    .notice { min-height: 1.3rem; margin: .9rem 0 0; color: #c2a8f3; font-size: .85rem; text-align: center; }
+
+    @media (max-width: 760px) {
+      body { grid-template-columns: 1fr; }
+      .welcome { min-height: 230px; padding: 1.5rem 1.5rem 0; border-right: 0; }
+      .welcome-copy { margin: 2.5rem 0 1rem; }
+      .welcome-copy h1 { font-size: 2.3rem; }
+      .welcome-copy p, .footer-note { display: none; }
+      .login-area { padding: 2rem 1.5rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+  <aside class="welcome">
+    <div class="brand"><span class="brand-mark" aria-hidden="true">✦</span> Obsidian</div>
+    <div class="welcome-copy">
+      <span class="eyebrow">Your ideas, connected</span>
+      <h1>A home for your thoughts.</h1>
+      <p>Sign in to open your workspace and pick up right where your ideas left off.</p>
+    </div>
+    <p class="footer-note">Your notes belong to you.</p>
+  </aside>
+
+  <main class="login-area">
+    <section class="login-card" aria-labelledby="login-title">
+      <h2 id="login-title">Welcome back</h2>
+      <p class="subheading">Sign in to your Obsidian account.</p>
+      <form id="login-form">
+        <div class="field">
+          <label for="email">Email address</label>
+          <input id="email" name="email" type="email" autocomplete="username" placeholder="you@example.com" required>
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required>
+        </div>
+        <div class="form-row">
+          <label class="remember"><input type="checkbox" name="remember"> Remember me</label>
+          <a href="#" id="forgot-link">Forgot password?</a>
+        </div>
+        <button type="submit">Sign in</button>
+        <p class="notice" id="notice" role="status" aria-live="polite"></p>
+      </form>
+      <div class="divider">or</div>
+      <p class="signup">New to Obsidian? <a href="#">Create an account</a></p>
+    </section>
+  </main>
+
+  <script>
+    const form = document.querySelector("#login-form");
+    const notice = document.querySelector("#notice");
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      notice.textContent = "Sign-in form ready to connect to your authentication service.";
+    });
+
+    document.querySelector("#forgot-link").addEventListener("click", (event) => {
+      event.preventDefault();
+      notice.textContent = "Password reset can be connected to your account service.";
+    });
+  </script>
+</body>
+</html>
